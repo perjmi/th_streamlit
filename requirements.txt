@@ -2,3 +2,4 @@ mplfinance
 numpy
 pandas
 streamlit
+scipy
