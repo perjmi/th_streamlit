@@ -75,8 +75,7 @@ i=st.session_state.i
 #j=102*random.randint(0,1000)
 #df0=data_5min_full.iloc[j:(j+102)]
 df0=data_5min_full.iloc[j:(j+51)]
-empty_df = pd.DataFrame(index=pd.date_range(start=df0.index[i], end=df0.index[-1]))
-df=(df0.iloc[:i]).append(empty_df)
+df=(df0.iloc[:i])
 
 low_point=[(df.index[2],df['low'].iloc[3]),(df.index[4],df['low'].iloc[3])]
 up_point=[(df.index[2],df['high'].iloc[3]),(df.index[4],df['high'].iloc[3])]
