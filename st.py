@@ -73,13 +73,15 @@ j=st.session_state.j
 i=st.session_state.i
 
 #j=102*random.randint(0,1000)
-df=data_5min_full.iloc[j:(j+102)]
-df=df.iloc[:i]
+#df0=data_5min_full.iloc[j:(j+102)]
+df0=data_5min_full.iloc[j:(j+51)]
+empty_df = pd.DataFrame(index=pd.date_range(start=df0.index[i], end=df0.index[-1]))
+df=(df0.iloc[:i]).append(empty_df)
 
 low_point=[(df.index[2],df['low'].iloc[3]),(df.index[4],df['low'].iloc[3])]
 up_point=[(df.index[2],df['high'].iloc[3]),(df.index[4],df['high'].iloc[3])]
 #fig,axlist=mpf.plot(df,type='candle',style='charles',alines=[low_point,up_point],returnfig=True)
-fig,axlist=mpf.plot(df,type='candle',alines=[low_point,up_point],returnfig=True,ylim=(df['low'].min()-10,df['high'].max()+10),title=instrument+" "+df.index[0].strftime("%Y/%m/%d"),figscale=1.4)
+fig,axlist=mpf.plot(df,type='candle',alines=[low_point,up_point],returnfig=True,xlim=(df0.index[0]-(df0.index[1]-df0.index[0]),df0.index[-1]+(df0.index[1]-df0.index[0])),ylim=(df['low'].min()-10,df['high'].max()+10),title=instrument+" "+df.index[0].strftime("%Y/%m/%d"),figscale=1.4)
 
 #apdict = mpf.make_addplot(df.iloc[2]['High']+30)
 
